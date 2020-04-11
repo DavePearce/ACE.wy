@@ -1,0 +1,16 @@
+[package]
+name="ace"
+authors=["David J. Pearce"]
+version="0.1.0"
+
+[build]
+platforms=["whiley","js"]
+
+[build.whiley]
+source="src/whiley"
+
+[build.js]
+includes=["src/js/**/*.js"]
+
+[dependencies]
+dom="0.1.0"
