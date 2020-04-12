@@ -128,6 +128,11 @@ public type Editor is &{
     method moveLinesDown()->(int),
     // Shifts all the selected lines up one row.
     method moveLinesUp()->(int),
+    //
+    // stuff
     
+    // Sets a new theme for the editor.
+    method setTheme(string),
+    //
     ...
 }
