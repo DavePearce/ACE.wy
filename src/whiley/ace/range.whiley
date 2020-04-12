@@ -6,3 +6,5 @@ public type Range is {
     int endRow,
     int endColumn
 }
+
+public native Range(int startRow, startCol, int endRow, int endCol) -> Range
