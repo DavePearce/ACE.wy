@@ -128,11 +128,164 @@ public type Editor is &{
     method moveLinesDown()->(int),
     // Shifts all the selected lines up one row.
     method moveLinesUp()->(int),
-    //
-    // stuff
-    
+    // Moves the cursor down in the document the specified number of
+    // times. Note that this does de-select the current selection.   
+    method navigateDown(int),
+    // Moves the cursor to the end of the current file. Note that this does
+    // de-select the current selection.
+    method navigateFileEnd(),
+    // Moves the cursor to the start of the current file. Note that this does
+    // de-select the current selection.
+    method navigateFileStart(),
+    // Moves the cursor left in the document the specified number of
+    // times. Note that this does de-select the current selection.
+    method navigateLeft(int),
+    // Moves the cursor to the end of the current line. Note that this does
+    // de-select the current selection.
+    method navigateLineEnd(),
+    // Moves the cursor to the start of the current line. Note that this does
+    // de-select the current selection.
+    method navigateLineStart(),
+    // Moves the cursor right in the document the specified number of
+    // times. Note that this does de-select the current selection.
+    method navigateRight(int),
+    // Moves the cursor to the specified row and column. Note that this does
+    // de-select the current selection.
+    method navigateTo(int, int),
+    // Moves the cursor up in the document the specified number of
+    // times. Note that this does de-select the current selection.
+    method navigateUp(int),
+    // Moves the cursor to the word immediately to the left of the current
+    // position. Note that this does de-select the current selection.
+    method navigateWordLeft(),
+    // Moves the cursor to the word immediately to the right of the current
+    // position. Note that this does de-select the current selection.
+    method navigateWordRight(),
+    // Called whenever a text "paste" happens.
+    method onPaste(string),
+    // Perform a redo operation on the document, reimplementing the last
+    // change.
+    method redo(),
+    // Removes words of text from the editor. A "word" is defined as a string
+    // of characters bookended by whitespace.
+    method remove(string),
+    // Removes all the lines in the current selection
+    method removeLines(),
+    // Removes the selection marker.
+    method removeSelectionMarker(Range),
+    // Removes all the words to the right of the current selection, until
+    // the end of the line.
+    method removeToLineEnd(),
+    // Removes all the words to the left of the current selection, until the
+    // start of the line.
+    method removeToLineStart(),
+    // Removes the word directly to the left of the current selection. 
+    method removeWordLeft(),
+    // Removes the word directly to the right of the current selection.
+    method removeWordRight(),
+    // Replaces the first occurrence of options.needle with the value in
+    // replacement.
+    // method replace(string, Object options),
+    // Replaces all occurrences of options.needle with the value in replacement.
+    // method replaceAll(string replacement, Object options),
+    // Triggers a resize of the editor.
+    method resize(bool),
+    // Scrolls the document to wherever "page down" is, without changing the
+    // cursor position.
+    method scrollPageDown(),
+    // Scrolls the document to wherever "page up" is, without changing the
+    // cursor position.
+    method scrollPageUp(),
+    // Scrolls to a line. If center is true, it puts the line in middle of
+    // screen (or attempts to).
+    method scrollToLine(int, bool, bool, method()),
+    // Moves the editor to the specified row.
+    // method scrollToRow(Object row),
+    // Selects all the text in editor.
+    method selectAll(),
+    // Finds the next occurrence of text in an active selection and adds it
+    // to the selections.
+    method selectMore(int, bool),
+    // Adds a cursor above or below the active cursor.
+    method selectMoreLines(int, bool),
+    // Selects the text from the current position of the document until where
+    // a "page down" finishes.
+    method selectPageDown(),
+    // Selects the text from the current position of the document until
+    // where a "page up" finishes.
+    method selectPageUp(),
+    // Specifies whether to use behaviors or not. "Behaviors" in this case is
+    // the auto-pairing of special characters, like quotation marks,
+    // parenthesis, or brackets.
+    method setBehavioursEnabled(bool),
+    // Sets the delay (in milliseconds) of the mouse drag.
+    method setDragDelay(int),
+    // Set a new font size (in pixels) for the editor text.
+    method setFontSize(int),
+    // Determines whether or not the current line should be highlighted.
+    method setHighlightActiveLine(bool),
+    // Determines if the currently selected word should be highlighted.
+    method setHighlightSelectedWord(bool),
+    // Sets a new key handler, such as "vim" or "windows".
+    method setKeyboardHandler(string),
+    // Pass in true to enable overwrites in your session, or false to
+    // disable. If overwrites is enabled, any text you enter will type over
+    // any text after it. If the value of overwrite changes, this function
+    // also emits the changeOverwrite event.
+    method setOverwrite(bool),
+    // Sets the column defining where the print margin should be.
+    method setPrintMarginColumn(int),
+    // If readOnly is true, then the editor is set to read-only mode, and
+    // none of the content can change.
+    method setReadOnly(bool),
+    // Sets how fast the mouse scrolling should do.
+    method setScrollSpeed(int),
+    // Indicates how selections should occur.
+    method setSelectionStyle(string),
+    // Sets a new editsession to use. This method also emits the
+    // 'changeSession' event.
+    method setSession(EditSession),
+    // Indicates whether the fold widgets are shown or not.
+    method setShowFoldWidgets(bool),
+    // If showInvisibles is set to true, invisible characters—like spaces or
+    // new lines—are show in the editor.
+    method setShowInvisibles(bool),
+    // If showPrintMargin is set to true, the print margin is shown in the
+    // editor.
+    method setShowPrintMargin(bool),
+    // Adds a new class, style, to the editor.
+    method setStyle(string),
     // Sets a new theme for the editor.
     method setTheme(string),
+    // Sets the current document to val.
+    method setValue(string, int)->string,
+    // Specifies whether to use wrapping behaviors or not, i.e. automatically
+    // wrapping the selection with characters such as brackets when such a
+    // character is typed in.
+    method setWrapBehavioursEnabled(bool),
+    // Splits the line at the current selection (by inserting an '\n').
+    method splitLine(),
+    // Given the currently selected range, this function either comments all
+    // the lines, or uncomments all of them.
+    method toggleCommentLines(),
+    // Sets the value of overwrite to the opposite of whatever it
+    // currently is.
+    method toggleOverwrite(),
+    // Converts the current selection entirely into lowercase.
+    method toLowerCase(),
+    // Converts the current selection entirely into uppercase.
+    method toUpperCase(),
+    // Transposes current line.
+    method transposeLetters(),
+    // Transposes the selected ranges.
+    method transposeSelections(int),
+    // Perform an undo operation on the document, reverting the last
+    // change.
+    method undo(),
+    // Removes the class style from the editor.
+    // method unsetStyle(Object),
+    // Updates the cursor and marker layers.   
+    method updateSelectionMarkers(),
     //
     ...
 }
