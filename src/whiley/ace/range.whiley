@@ -7,4 +7,5 @@ public type Range is {
     int endColumn
 }
 
-public native Range(int startRow, startCol, int endRow, int endCol) -> Range
+// Native Range constructor
+public native method Range(int startRow, int startCol, int endRow, int endCol) -> Range
